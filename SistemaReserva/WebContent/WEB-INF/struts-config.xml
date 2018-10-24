@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts-config PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+ "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<!-- AQUI SE MAPEIA TODAS AS CLASSES FILHAS DE ACTIONFORM -->
+	<form-beans>
+		<!-- name: Apelido dado para a classe Form para acesso nos JSPs -->
+		<!-- type: Nome da Classe juntamente com seu package -->
+		<form-bean name="eventoForm" type="br.com.systemmcr.sistemareserva.struts.EventoForm" />
+		<form-bean name="mesaForm" type="br.com.systemmcr.sistemareserva.struts.MesaForm" />
+		<form-bean name="clienteForm" type="br.com.systemmcr.sistemareserva.struts.ClienteForm" />
+		<form-bean name="reservaForm" type="br.com.systemmcr.sistemareserva.struts.ReservaForm" />
+		<form-bean name="usuarioForm" type="br.com.systemmcr.sistemareserva.struts.UsuarioForm" />
+		<form-bean name="loginForm" type="br.com.systemmcr.sistemareserva.struts.LoginForm"></form-bean>
+		<form-bean name="fileUploadForm" type="br.com.systemmcr.sistemareserva.struts.FileUploadForm"></form-bean>
+		<form-bean name="listaForm" type="br.com.systemmcr.sistemareserva.struts.ListaForm"></form-bean>
+
+	</form-beans>
+
+	<!-- AQUI MAPEAMOS AS NOSSAS CLASSES ACTIONs DE FORMA A UNIR FORM/TELAS/ACTION -->
+	<action-mappings>
+		<!-- path: Apelido dado a Classe Action de cada Contexto -->
+		<!-- type: Classe Action cujo apelido foi informado em path -->
+		<!-- name: Apelido dado a Classe Form desejada -->
+		<!-- parameter: Variavel que conterá o nome do método a ser chamado ao submeter o jsp. Para sua utilização é necessário que no JSP tenha um campo hidden com seu nome. Ex: <h:hidden 
+			property="acao" value="empty"/> O valor atribuido a esta variável, será o nome do método a ser chamado na classe Action. -->
+		<!-- scope: Tipo de escopo adotado. Com o session, os dados ficam preenchidos até que mande limpar. -->
+
+		<action path="/eventoAction" type="br.com.systemmcr.sistemareserva.struts.EventoAction" name="eventoForm" parameter="method" scope="session">
+			<forward name="eventoCadastro" path="/pages/evento-cadastro.jsp" />
+		</action>
+
+		<action path="/mesaAction" type="br.com.systemmcr.sistemareserva.struts.MesaAction" name="mesaForm" parameter="method" scope="session">
+			<forward name="mesaCadastro" path="/pages/mesa-cadastro.jsp" />
+		</action>
+
+		<action path="/clienteAction" type="br.com.systemmcr.sistemareserva.struts.ClienteAction" name="clienteForm" parameter="method" scope="session">
+			<forward name="clienteCadastro" path="/pages/cliente-cadastro.jsp" />
+		</action>
+
+		<action path="/reservaAction" type="br.com.systemmcr.sistemareserva.struts.ReservaAction" name="reservaForm" parameter="method" scope="session">
+			<forward name="reservaCadastro" path="/pages/reserva-cadastro.jsp" />
+		</action>
+
+		<action path="/usuarioAction" type="br.com.systemmcr.sistemareserva.struts.UsuarioAction" name="usuarioForm" parameter="method" scope="session">
+			<forward name="usuarioCadastro" path="/pages/usuario-cadastro.jsp" />
+		</action>
+
+		<action path="/loginAction" type="br.com.systemmcr.sistemareserva.struts.LoginAction" name="loginForm" parameter="method" scope="session">
+			<forward name="principal" path="/pages/principal.jsp"></forward>
+			<forward name="loginCampo" path="/pages/login.jsp"></forward>
+		</action>
+
+		<action path="/fileUploadAction" type="br.com.systemmcr.sistemareserva.struts.FileUploadAction" name="fileUploadForm" parameter="method" scope="session">
+			<forward name="uploadCampo" path="/pages/upload.jsp"></forward>
+		</action>
+
+		<action path="/listaAction" type="br.com.systemmcr.sistemareserva.struts.ListaAction" name="listaForm" parameter="method" scope="session">
+			<forward name="listaCadastro" path="/pages/lista-cadastro.jsp"></forward>
+		</action>
+
+	</action-mappings>
+
+	<!-- Informa ao Struts em qual arquivo estão as mensagens que serão usadas no Projeto -->
+	<message-resources parameter="application" />
+</struts-config>
